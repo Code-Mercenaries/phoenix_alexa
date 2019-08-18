@@ -1,5 +1,5 @@
-defmodule Alexa.CanFulfillIntent do
-  alias Alexa.CanFulfillIntent
+defmodule PhoenixAlexa.CanFulfillIntent do
+  alias PhoenixAlexa.CanFulfillIntent
 
   defstruct type: "CanFulfillIntent",
             canFulfill: "",

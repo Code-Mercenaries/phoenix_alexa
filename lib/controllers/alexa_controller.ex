@@ -1,12 +1,12 @@
-defmodule Alexa.Controller do
+defmodule PhoenixAlexa.Controller do
   defmacro __using__(method) do
     quote do
-      import Alexa.{Controller, Response}
-      import Alexa.{CanFulfillIntentResponse}
-      alias Alexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
-      alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
-      alias Alexa.{CanFulfillIntentResponse}
-      alias Alexa.{CanFulfillIntent}
+      import PhoenixAlexa.{Controller, Response}
+      import PhoenixAlexa.{CanFulfillIntentResponse}
+      alias PhoenixAlexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
+      alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
+      alias PhoenixAlexa.{CanFulfillIntentResponse}
+      alias PhoenixAlexa.{CanFulfillIntent}
 
       def set_response(conn, status \\ 200, response) do
         conn
@@ -33,8 +33,8 @@ defmodule Alexa.Controller do
       end
 
       def unquote(method)(conn, params) do
-        case Poison.Decode.decode(params, as: %Alexa.Request{}) do
-          %Alexa.Request{} = request ->
+        case Poison.Decode.decode(params, as: %PhoenixAlexa.Request{}) do
+          %PhoenixAlexa.Request{} = request ->
             handle_request(conn, request)
 
           _ ->

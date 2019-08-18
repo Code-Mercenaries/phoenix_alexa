@@ -1,8 +1,8 @@
-defmodule AlexaTest do
+defmodule PhoenixAlexaTest do
   use ExUnit.Case
-  doctest Alexa
+  doctest PhoenixAlexa
 
   test "greets the world" do
-    assert Alexa.hello() == :world
+    assert PhoenixAlexa.hello() == :world
   end
 end

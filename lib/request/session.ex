@@ -1,5 +1,5 @@
-defmodule Alexa.Session do
-  alias Alexa.{Application, User}
+defmodule PhoenixAlexa.Session do
+  alias PhoenixAlexa.{Application, User}
 
   defstruct new: false,
             sessionId: "",

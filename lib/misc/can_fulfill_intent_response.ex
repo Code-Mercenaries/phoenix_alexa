@@ -1,6 +1,6 @@
-defmodule Alexa.CanFulfillIntentResponse do
-  alias Alexa.{CanFulfillIntentResponse}
-  alias Alexa.{CanFulfillIntent}
+defmodule PhoenixAlexa.CanFulfillIntentResponse do
+  alias PhoenixAlexa.{CanFulfillIntentResponse}
+  alias PhoenixAlexa.{CanFulfillIntent}
 
   defstruct version: "1.0",
             response: %{}

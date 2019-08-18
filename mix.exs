@@ -1,11 +1,11 @@
-defmodule Alexa.MixProject do
+defmodule PhoenixAlexa.MixProject do
   use Mix.Project
 
   @version File.read!("VERSION") |> String.strip()
 
   def project do
     [
-      app: :alexa,
+      app: :phoenix_alexa,
       version: @version,
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,

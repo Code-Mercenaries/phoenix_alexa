@@ -1,5 +1,5 @@
-defmodule Alexa.Request do
-  alias Alexa.{Session, GenericRequest}
+defmodule PhoenixAlexa.Request do
+  alias PhoenixAlexa.{Session, GenericRequest}
 
   defstruct version: "",
             session: %Session{},

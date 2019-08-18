@@ -1,4 +1,4 @@
-# Alexa
+# PhoenixAlexa
 
 **TODO: Add description**
 
@@ -10,7 +10,7 @@ by adding `alexa` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:alexa, "~> 0.1.0"}
+    {:phoenix_alexa, "~> 0.1.0"}
   ]
 end
 ```
@@ -23,21 +23,21 @@ be found at [https://hexdocs.pm/alexa](https://hexdocs.pm/alexa).
 Update a route with a post request into your alexa controller. 
 
 ```elixir
-  scope "/", HelloAlexa do
+  scope "/", HelloPhoenixAlexa do
     pipe_through :api
 
-    post "/", AlexaController, :post
+    post "/", PhoenixAlexaController, :post
   end
 
 ```
 
-In the controller add a use statement for `Alexa.Controller` and define functions for `launch_request`, `session_end_request` and `intent_request` as follows:
+In the controller add a use statement for `PhoenixAlexa.Controller` and define functions for `launch_request`, `session_end_request` and `intent_request` as follows:
 
 ```elixir
 
-defmodule HelloAlexa.AlexaController do
-  use HelloAlexa.Web, :controller
-  use Alexa.Controller, :post  # param should match route name
+defmodule HelloPhoenixAlexa.PhoenixAlexaController do
+  use HelloPhoenixAlexa.Web, :controller
+  use PhoenixAlexa.Controller, :post  # param should match route name
 
   def launch_request(conn, request) do
     response = %Response{} 
@@ -75,7 +75,7 @@ end
 
 ```
 
-To authenticate that the request corresponds to your Alexa application add the ValidateApplicationId plug to your router as follows:
+To authenticate that the request corresponds to your PhoenixAlexa application add the ValidateApplicationId plug to your router as follows:
 
 ```elixir
   pipeline :api do
