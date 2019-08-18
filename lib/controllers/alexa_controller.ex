@@ -1,0 +1,69 @@
+defmodule Alexa.Controller do
+  defmacro __using__(method) do
+    quote do
+      import Alexa.{Controller, Response}
+      import Alexa.{CanFulfillIntentResponse}
+      alias Alexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
+      alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
+      alias Alexa.{CanFulfillIntentResponse}
+      alias Alexa.{CanFulfillIntent}
+
+      def set_response(conn, status \\ 200, response) do
+        conn
+        |> Plug.Conn.put_resp_content_type("application/json")
+        |> Plug.Conn.resp(status, Poison.encode!(response))
+      end
+
+      def handle_request(conn, request) do
+        case request.request.type do
+          "LaunchRequest" ->
+            launch_request(conn, request)
+
+          "CanFulfillIntentRequest" ->
+            can_fulfill_intent_request(conn, request.request.type, request)
+
+          "IntentRequest" ->
+            intent_request(conn, request.request.intent.name, request)
+
+          "SessionEndedRequest" ->
+            session_ended_request(conn, request)
+            |> set_response(%{})
+        end
+        |> Plug.Conn.send_resp()
+      end
+
+      def unquote(method)(conn, params) do
+        case Poison.Decode.decode(params, as: %Alexa.Request{}) do
+          %Alexa.Request{} = request ->
+            handle_request(conn, request)
+
+          _ ->
+            conn
+            |> Plug.Conn.put_resp_content_type("application/json")
+            |> Plug.Conn.send_resp(500, Poison.encode!(%{error: "Internal Error"}))
+        end
+      end
+
+      def launch_request(conn, _request) do
+        conn |> set_response(%Response{})
+      end
+
+      def session_ended_request(conn, request) do
+        conn
+      end
+
+      def can_fulfill_intent_request(conn, _, request) do
+        conn |> set_response(%Response{})
+      end
+
+      def intent_request(conn, _, request) do
+        conn |> set_response(%Response{})
+      end
+
+      defoverridable launch_request: 2,
+                     intent_request: 3,
+                     can_fulfill_intent_request: 3,
+                     session_ended_request: 2
+    end
+  end
+end
